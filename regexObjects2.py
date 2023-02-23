@@ -1,0 +1,11 @@
+import re
+phonenum_regex = re.compile(r"(\d\d\d)-(\d\d\d-\d\d\d\d)")
+match_objects = phonenum_regex.search("my number is 415-555-4242")
+match_objects.group(1)
+match_objects.group(2)
+match_objects.group(0)
+match_objects.group()
+print(match_objects.groups())
+var1, var2 = match_objects.groups()
+print(var1)
+print(var2)
