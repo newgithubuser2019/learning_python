@@ -1,23 +1,34 @@
 import os
-import polars as pl
-from datetime import datetime, timedelta
-import numpy as np
 import time
+from datetime import datetime, timedelta
+
+import numpy as np
+import polars as pl
+import rich
+from rich.console import Console
+from rich.traceback import install
+
+install(suppress=[rich], show_locals=False)
+console = Console()
 
 USERPROFILE = os.environ["USERPROFILE"]
 
 # df = pl.read_csv("https://j.mp/iriscsv")
-filename = USERPROFILE + "\\OneDrive\\programming\\_datasets\\iris.csv"
+filename = USERPROFILE + "\\OneDrive\\MEGA\\programming\\_datasets\\iris.csv"
 # -------------------------------------------------------------eager
-
+# with console.status("Working...", spinner="material"):
 start = time.time()
 df = pl.read_csv(filename)
 print(df.filter(pl.col("sepal_length") > 5)
-      .groupby("species", maintain_order=True)
-      .agg(pl.all().sum())
+    .groupby("species", maintain_order=True)
+    .agg(pl.all().sum())
 )
 end = time.time()
-print(end - start)
+# print(end - start)
+# rich.inspect(df, methods=False)
+# console.print(df, style="reverse")
+# console.print(df)
+exit()
 
 # -------------------------------------------------------------lazy
 # Going from eager to lazy is often as simple as starting your query with .lazy() and ending with .collect()

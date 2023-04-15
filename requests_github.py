@@ -5,7 +5,7 @@ import requests
 
 # --------------------------------------------------------------------------------------------------------------------------------------------
 # Make an API call and store the response
-url = "https://api.github.com/search/repositories?q=language:python&sort=stars"
+url = "https://api.github.com/search/repositories?q=language:javascript&sort=stars"
 r = requests.get(url)
 print("------------------------------------------------------------------------------------------------------------")
 print("\nStatus code:", r.status_code)  # A status code of 200 indicates a successful response
