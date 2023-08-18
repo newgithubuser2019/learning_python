@@ -8,13 +8,13 @@ pd.set_option('max_colwidth', 16)
 pd.set_option('expand_frame_repr', False)
 
 # -----------------------------------------------------------------------------------------------------------------------------------------
-filename = "D:\\Android\\Android Sync\\!one-way to device - other\\programming\\Python\\programs\\exercises\\!datasets\\cereal_data.csv"
+filename = "D:\\programming\\_datasets\\cereal_data.csv"
 # url = "https://cdn.jsdelivr.net/npm/vega-datasets@2.2.0/data/airports.csv"
 # url = "https://github.com/chris1610/pbpython/blob/master/data/cereal_data.csv?raw=True"
 
 
 # -----------------------------------------------------------------------------------------------------------------------------------------
-@st.cache()
+@st.cache_data
 def load_data():
     df = pd.read_csv(filename)
     return df
