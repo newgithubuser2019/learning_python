@@ -1,12 +1,12 @@
-from bokeh.plotting import figure, show
-from bokeh.plotting import output_file
-# from bokeh.plotting import save
-from bokeh.models import BoxAnnotation
-from bokeh.io import curdoc
-from bokeh.models import NumeralTickFormatter
+import sys
 from datetime import datetime, timedelta
+
+from bokeh.io import curdoc
 # from bokeh.layouts import row
 from bokeh.layouts import gridplot
+# from bokeh.plotting import save
+from bokeh.models import BoxAnnotation, NumeralTickFormatter
+from bokeh.plotting import figure, output_file, show
 
 # ---------------------------------------------------------------------------------------
 #  prepare some data
@@ -120,7 +120,7 @@ p.add_layout(high_box)
 show(p)
 output_file(filename="bokeh_exploration.html", title="Static HTML file")
 # save(p)
-# exit()
+# sys.exit()
 # ------------------------------------------------------------------
 #  create three plots with one renderer each
 s1 = figure(width=250, height=250)  # background_fill_color="# fafafa")

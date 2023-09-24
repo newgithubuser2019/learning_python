@@ -1,6 +1,7 @@
 import sqlite3
-import pandas as pd
+import sys
 
+import pandas as pd
 
 filename = "D:\\Android\\Android Sync\\!one-way to device - other\\programming\\Python\\programs\\exercises\\!datasets\\sakila-data.sql"
 try:

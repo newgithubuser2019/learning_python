@@ -1,11 +1,13 @@
 import pandas as pd
-import streamlit as st
 import plotly.express as px
+import streamlit as st
+
 pd.options.plotting.backend = "plotly"
 pd.set_option('display.max_rows', 1500)
 pd.set_option('display.max_columns', 100)
 pd.set_option('max_colwidth', 16)
 pd.set_option('expand_frame_repr', False)
+import sys
 
 # -----------------------------------------------------------------------------------------------------------------------------------------
 filename = "D:\\programming\\_datasets\\cereal_data.csv"

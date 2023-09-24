@@ -1,4 +1,5 @@
 import os
+import sys
 import time
 from datetime import datetime, timedelta
 
@@ -28,7 +29,7 @@ end = time.time()
 # rich.inspect(df, methods=False)
 # console.print(df, style="reverse")
 # console.print(df)
-exit()
+sys.exit()
 
 # -------------------------------------------------------------lazy
 # Going from eager to lazy is often as simple as starting your query with .lazy() and ending with .collect()
@@ -55,7 +56,7 @@ df = (
 print(df)
 end = time.time()
 print(end - start)
-# exit()
+# sys.exit()
 
 
 # -------------------------------------------------------
@@ -120,7 +121,7 @@ df2 = pl.DataFrame({
 })
 df2 = df2.with_columns([pl.when(pl.col("y") == "A").then("WWW").otherwise(pl.col("y")).alias('y')])
 print(df2)
-# exit()
+# sys.exit()
 
 df2 = df2.groupby("y", maintain_order=True).agg([
     pl.col("*").count().alias("count"),

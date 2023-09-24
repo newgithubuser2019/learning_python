@@ -1,11 +1,13 @@
 # import os.path
 # from collections import defaultdict
 # import string
-import requests
-from bs4 import BeautifulSoup
 # import pandas as pd
 # import numpy as np
 # import matplotlib.pyplot as plt
+import sys
+
+import requests
+from bs4 import BeautifulSoup
 
 # url = "https://www.revisor.mn.gov/laws/2014/0/Session+Law/Chapter/294/"
 # url = "https://nostarch.com/"

@@ -1,5 +1,8 @@
-import requests
 # import pprint
+import sys
+
+import requests
+
 # import pygal
 # from pygal.style import LightColorizedStyle as LCS, LightenStyle as LS
 
@@ -92,5 +95,5 @@ chart.x_labels = names
 # chart.add("", stars)
 chart.add("", plot_dicts)
 chart.render_to_file('requests_github_visualisation.svg')
-exit()
+sys.exit()
 """

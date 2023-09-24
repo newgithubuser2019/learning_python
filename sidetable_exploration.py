@@ -1,9 +1,10 @@
-import pandas as pd
-# import sidetable
-import matplotlib.pyplot as plt
 # import altair
 # from altair import Chart, X, Y, Axis, SortField
+import sys
 
+# import sidetable
+import matplotlib.pyplot as plt
+import pandas as pd
 
 # ---------------------------------------------------------------------------------------------------------------------------------------------
 df = pd.read_csv('https://github.com/chris1610/pbpython/blob/master/data/school_transform.csv?raw=True', index_col=0)

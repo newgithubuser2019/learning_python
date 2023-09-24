@@ -1,6 +1,9 @@
+import sys
+
 import pandas as pd
 # import streamlit as st
 import plotly.express as px
+
 pd.options.plotting.backend = "plotly"
 pd.set_option('display.max_rows', 1500)
 pd.set_option('display.max_columns', 100)
@@ -33,7 +36,7 @@ fig = px.scatter(
 # fig = px.treemap(df, path=['shelf', 'mfr'], values='cereal', title='Cereals by shelf location')
 fig = px.sunburst(df, path=['mfr', 'shelf'], values='cereal')
 fig.show()
-# exit()
+# sys.exit()
 
 # saving image - Supported formats: ['png', 'jpg', 'jpeg', 'webp', 'svg', 'pdf', 'eps', 'json']
 fig.write_image('plotly_exploration.pdf')

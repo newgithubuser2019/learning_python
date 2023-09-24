@@ -1,9 +1,10 @@
+import sys
+
 import dash
-from dash import dcc
-from dash import html
+import pandas as pd
 # import dash_bootstrap_components as dbc  # separate module - should be installed
 import plotly.graph_objs as go
-import pandas as pd
+from dash import dcc, html
 
 pd.set_option('display.max_rows', 1500)
 pd.set_option('display.max_columns', 100)
@@ -46,7 +47,7 @@ managers_list = df["Manager"].tolist()
 managers_list.append("All Managers")
 managers_list = set(managers_list)
 # print(managers_list)
-# exit()
+# sys.exit()
 
 app.layout = html.Div([
     html.H2("Sales Funnel Report"),

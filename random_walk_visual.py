@@ -1,8 +1,9 @@
 # import matplotlib as mpl
-import matplotlib.pyplot as plt
+import sys
 # from matplotlib import cm
 from random import choice
 
+import matplotlib.pyplot as plt
 
 # -------------------------------------------------------------------------------------------------------------------------------------------
 # plot
@@ -112,4 +113,4 @@ plt.axes().get_yaxis().set_visible(False)
 # plt.savefig("matplotlib_random_walk.png")
 plt.savefig("matplotlib_random_walk.png", bbox_inches='tight')  # The second argument trims extra whitespace from the plot
 plt.show()
-# exit()
+# sys.exit()
