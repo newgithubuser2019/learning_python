@@ -15,13 +15,48 @@ console = Console()
 USERPROFILE = os.environ["USERPROFILE"]
 
 # df = pl.read_csv("https://j.mp/iriscsv")
-filename = USERPROFILE + "\\OneDrive\\MEGA\\programming\\_datasets\\iris.csv"
+filename1 = USERPROFILE + "\\OneDrive\\MEGA\\programming\\_datasets\\iris.csv"
+filename2 = USERPROFILE + "\\OneDrive\\MEGA\\programming\\_datasets\\время поднятия кормушки.xlsx"
+# ----------------------------------------------------------------------
+df = pl.read_excel(
+    source=filename2,
+    sheet_name="TDSheet",
+    engine="openpyxl",
+    read_options={"has_header": True},
+    )
+df = df.filter((pl.col("Вид выбытия") == "Основная сдача") | (pl.col("Вид выбытия") == "Разрежение"))
+df.select(pl.col("Время поднятия кормушки").drop_nans())
+#
+df = df.with_columns(площ = pl.lit(""))
+df = df.with_columns(площ=pl.when(pl.col("Корпус").str.contains("Агрин")).then(pl.lit('Агрин')).otherwise(pl.col('площ')))
+df = df.with_columns(площ=pl.when(pl.col("Корпус").str.contains("Томаровская")).then(pl.lit('Томаровское')).otherwise(pl.col('площ')))
+df = df.with_columns(площ=pl.when(pl.col("Корпус").str.contains("Коренская")).then(pl.lit('Коренское')).otherwise(pl.col('площ')))
+df = df.with_columns(площ=pl.when(pl.col("Корпус").str.contains("Графовская")).then(pl.lit('Графовское')).otherwise(pl.col('площ')))
+df = df.with_columns(площ=pl.when(pl.col("Корпус").str.contains("Полянская")).then(pl.lit('Полянское')).otherwise(pl.col('площ')))
+df = df.with_columns(площ=pl.when(pl.col("Корпус").str.contains("Нежегольская")).then(pl.lit('Нежегольское')).otherwise(pl.col('площ')))
+df = df.with_columns(площ=pl.when(pl.col("Корпус").str.contains("Валуйская")).then(pl.lit('Валуйское')).otherwise(pl.col('площ')))
+df = df.with_columns(площ=pl.when(pl.col("Корпус").str.contains("Рождественская")).then(pl.lit('Рождественское')).otherwise(pl.col('площ')))
+df = df.with_columns(площ=pl.when((pl.col("Корпус").str.contains("Муромская 1") is True) & (pl.col("Корпус").str.contains(" РМ") is False) & (pl.col("Корпус").str.contains(" РC") is False)).then(pl.lit('Муромское 1')).otherwise(pl.col('площ')))
+df = df.with_columns(площ=pl.when((pl.col("Корпус").str.contains("Муромская 2") is True) & (pl.col("Корпус").str.contains(" РМ") is False) & (pl.col("Корпус").str.contains(" РC") is False)).then(pl.lit('Муромское 2')).otherwise(pl.col('площ')))
+#
+df = df.with_columns(корп = pl.lit(""))
+df = df.with_columns(корп=pl.when(pl.col("Корпус").str.contains("корпус")).then(pl.col("Корпус").str.slice(0, 3)).otherwise(pl.col('корп')))
+df = df.with_columns(корп=pl.when(pl.col("Корпус").str.contains(" к")).then(pl.col("Корпус").str.slice(0, 2)).otherwise(pl.col('корп')))
+# df = df.cast({"корп": pl.String})
+# df = df.with_columns(pl.concat_str([pl.lit("_"), pl.col("корп")], separator="",).alias("корп"))
+df = df.with_columns(pl.col("корп").str.replace(" ", "")) # здесь не пробел, а специальный символ из 1С
+# df = df.with_columns(pl.col("корп").str.replace("_", ""))
+
+print(df)
+sys.exit()
+df = df.explode(["Падеж вес", "Живок вес", "Падеж голов", "Живок голов", "Выбр с/н голов", "Выбр с/н вес"])
+
 # -------------------------------------------------------------eager
 # with console.status("Working...", spinner="material"):
 start = time.time()
-df = pl.read_csv(filename)
+df = pl.read_csv(filename1)
 print(df.filter(pl.col("sepal_length") > 5)
-    .groupby("species", maintain_order=True)
+    .group_by("species", maintain_order=True)
     .agg(pl.all().sum())
 )
 end = time.time()
@@ -45,7 +80,7 @@ print(
 """
 start = time.time()
 # df = pl.read_csv(filename)
-df = pl.scan_csv(filename) # for local files
+df = pl.scan_csv(filename1) # for local files
 df = (
     df.lazy()
     .filter(pl.col("sepal_length") > 5)
