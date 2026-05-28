@@ -2,20 +2,27 @@ import sys
 
 import numpy as np
 import pandas as pd
-import xlwings as xw
 
-df = pd.read_excel("pivot_table sales-funnel.xlsx")
-# Create a new workbook and add the DataFrame to Sheet1
+
+
+df = pd.read_excel("D:\\programming\\datasets\\время поднятия кормушки.xlsx")
+# print(df.head())
+
+# import xlwings as xw
 # xw.view(df)
-"""
-s = df.style.format(formatter={('Price'): "{:,.2f}"})
-headers = {
-    'selector': 'th:not(.index_name)',
-    'props': 'background-color: #000066; color: white;'
-}
-s.set_table_styles([headers])
-"""
-print(df.head())
+
+#import dtale
+#d = dtale.show(df)
+#d.open_browser()
+#d.kill()
+#if __name__ == '__main__':
+      #dtale.show(df, subprocess=False)
+#sys.exit()
+
+import df2tables
+df2tables.render(df)
+
+sys.exit()
 
 # np.select exploration -----------------------------------------------------------------
 # you can use np.select for numeric analysis as well as the text
