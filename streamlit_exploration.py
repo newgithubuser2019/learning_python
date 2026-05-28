@@ -10,7 +10,7 @@ pd.set_option('expand_frame_repr', False)
 import sys
 
 # -----------------------------------------------------------------------------------------------------------------------------------------
-filename = "D:\\programming\\_datasets\\cereal_data.csv"
+filename = "D:\\programming\\datasets\\cereal_data.csv"
 # url = "https://cdn.jsdelivr.net/npm/vega-datasets@2.2.0/data/airports.csv"
 # url = "https://github.com/chris1610/pbpython/blob/master/data/cereal_data.csv?raw=True"
 
@@ -22,12 +22,12 @@ def load_data():
     return df
 
 
-#  Read in the cereal data
+#  Read in the dataframe
 df = load_data()
 
-st.title('Rating exploration')
+st.title('Title placeholder')
 
-#  Only a subset of options make sense
+#  Options to display
 x_options = [
     'calories', 'protein', 'fat', 'sodium', 'fiber', 'carbo', 'sugars',
     'potass'
